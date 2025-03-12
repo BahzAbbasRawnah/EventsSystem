@@ -1,0 +1,91 @@
+<?php
+    
+    return [
+        'dashboard' => 'Dashboard',
+        'events' => 'Events',
+        'event'=>'Event',
+        'name' => 'Name',
+        'categories' => 'Event Categories',
+        'address_settings' => ' Address Settings',
+        'subscription_settings' => 'Subscription Settings',
+        'countries' => 'Countries',
+        'country'=>'Country',
+        'cities' => 'Cities',
+        'city'=>'City',
+        'districts' => 'Districts',
+        'district'=>"District",
+        'tickets' => 'Tickets',
+        'ticket'=>'Ticket',
+        'bookings' => 'Bookings',
+        'booking'=>'Booking',
+        'payment_methods' => 'Payment Methods',
+        'payment_method' => 'Payment Method',
+
+        'locations' => 'Locations',
+        'subscription_packages' => 'Subscriptions Packages', 
+        'subscription_package' => 'Subscription Package',
+        'package_features' => 'Package Features',
+        'package_feature' => 'Package Feature',
+        'package'=>'Package',
+        'features' => 'Features',
+        'users' => 'Users',
+        'message' => 'Message',
+        'contact_us' => 'Contact Us',
+        'faq' => 'FAQ',
+        'question_en' => 'Question (English)',
+        'question_ar' => 'Question (Arabic)',
+        'answer_en' => 'Answer (English)',
+        'answer_ar' => 'Answer (Arabic)',
+  
+        //actions translations
+        'add' => 'Add',
+        'edit' => 'Edit',
+        'delete' => 'Delete',
+        'view' => 'View',
+        'create' => 'Create',
+        'update' => 'Update',
+        'search' => 'Search',
+        'actions' => 'Actions',
+        'cancel' => 'Cancel',
+        'submit' => 'Submit',
+        'back' => 'Back',
+        'delete_confirmation' => 'Are you sure you want to delete this record?',
+        'active' => 'Active',
+        'inactive' => 'Inactive',
+        'status' => 'Status',
+
+
+
+        //columns names translations
+        'user' => 'User',
+        'full_name' => 'Full Name',
+        'email' => 'Email',
+        'phone' => 'Phone',
+        'role' => 'Role',
+        'email_verified_at' => 'Email Verified At',
+
+        'name_en' => 'Name (English)',
+        'name_ar' => 'Name (Arabic)',
+        'code' => 'Code',
+        'image' => 'Image',
+        'flag'=>'Flag',
+        'price'=>'Price',
+        'period'=>'Period',
+        'description'=>'Description',
+        'description_en'=>'Description (English)',
+        'description_ar'=>'Description (Arabic)',
+        'ticket_price'=>'Ticket Price',
+        'total_price'=>'Total Price',
+        'quantity'=>'Quantity',
+        'tickets_quantity'=>'Ticket Quantity',
+        'start_date'=>'Start Date',
+        'end_date'=>'End Date',
+        'created_at' => 'Created At',
+        'updated_at' => 'Updated At',
+        'deleted_at' => 'Deleted At',
+
+
+        
+      
+    ];
+?>
