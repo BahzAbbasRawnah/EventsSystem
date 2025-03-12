@@ -9,21 +9,21 @@
                 
                 <!-- Price -->
                 <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-dollar-sign text-primary mx-2"></i>
+                    <i class="fas fa-dollar-sign  mx-2"></i>
                     <p class="card-text text-dark mb-0"> {{ $event->ticket_price }}</p>
                 </div>
 
                 <!-- Dates -->
                 <div class="d-flex align-items-center mb-2">
-                    <i class="fas fa-calendar-alt text-primary mx-2"></i>
+                    <i class="fas fa-calendar-alt  mx-2"></i>
                     <p class="card-text text-dark mb-0 mx-2">{{ $event->start_date }}</p>
-                    <i class="fas fa-calendar-alt text-primary mx-2"></i>
+                    <i class="fas fa-calendar-alt  mx-2"></i>
                     <p class="card-text text-dark mb-0">{{ $event->end_date }}</p>
                 </div>
 
                 <!-- Location -->
                 <div class="d-flex align-items-center mb-3">
-                    <i class="fas fa-map-marker-alt text-primary mx-2"></i>
+                    <i class="fas fa-map-marker-alt  mx-2"></i>
                     <p class="card-text text-dark mb-0">
                         {{ $event->country->name }} - {{ $event->city->name }} - {{ $event->district->name }}
                     </p>

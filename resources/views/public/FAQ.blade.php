@@ -3,7 +3,7 @@
 @section('content')
 <!-- FAQ Section -->
 <div class="container my-5">
-    <h2 class="text-center text-primary mb-4">{{ __('admin.faq') }}</h2>
+    <h2 class="text-center  mb-4">{{ __('admin.faq') }}</h2>
 
     <div class="accordion" id="faqAccordion">
         @foreach($faqs as $index => $faq)

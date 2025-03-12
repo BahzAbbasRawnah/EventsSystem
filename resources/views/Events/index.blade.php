@@ -9,7 +9,7 @@
         <div class="col">
             <div class="d-flex flex-wrap justify-content-md-center">
                 @foreach ($categories as $category)
-                    <button class="btn btn-outline-primary m-1">{{ $category->name }}</button>
+                    <button class="btn btn-outline-primary m-1 text-white">{{ $category->name }}</button>
                 @endforeach
             </div>
         </div>
@@ -31,12 +31,12 @@
                          class="event-image" 
                          alt="Event Image">
                     <div class="card-body">
-                        <h5 class="card-title text-dark fw-bold">{{ $event->name }}</h5>
+                        <h5 class="fw-bold">{{ $event->name }}</h5>
                         
                         <!-- Price -->
                         <div class="d-flex align-items-center mb-2">
                             <i class="fas fa-dollar-sign text-primary mx-2"></i>
-                            <p class="card-text text-dark mb-0"> {{ $event->ticket_price }} {{ __('pages.currency') }}'</p>
+                            <p class="card-text mb-0"> {{ $event->ticket_price }} {{ __('pages.currency') }}'</p>
                         </div>
 
                    <!-- Dates -->
@@ -44,11 +44,11 @@
 <div class="d-flex align-items-center mb-2">
     <div class="d-flex align-items-center">
         <i class="fas fa-calendar-alt text-primary mx-2"></i>
-        <p class="card-text text-dark mb-0 mx-2">{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</p>
+        <p class="card-text mb-0 mx-2">{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</p>
     </div>
     <div class="d-flex align-items-center">
         <i class="fas fa-calendar-alt text-primary mx-2"></i>
-        <p class="card-text text-dark mb-0">{{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}</p>
+        <p class="card-text mb-0">{{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}</p>
     </div>
 </div>
 
@@ -56,11 +56,11 @@
 <div class="d-flex align-items-center mb-2">
     <div class="d-flex align-items-center">
         <i class="fas fa-clock text-primary mx-2"></i>
-        <p class="card-text text-dark mb-0 mx-2">{{ \Carbon\Carbon::parse($event->start_date)->format('h:i A') }}</p>
+        <p class="card-text mb-0 mx-2">{{ \Carbon\Carbon::parse($event->start_date)->format('h:i A') }}</p>
     </div>
     <div class="d-flex align-items-center">
         <i class="fas fa-clock text-primary mx-2"></i>
-        <p class="card-text text-dark mb-0">{{ \Carbon\Carbon::parse($event->end_date)->format('h:i A') }}</p>
+        <p class="card-text mb-0">{{ \Carbon\Carbon::parse($event->end_date)->format('h:i A') }}</p>
     </div>
 </div>
 
@@ -69,7 +69,7 @@
                         <!-- Location -->
                         <div class="d-flex align-items-center mb-3">
                             <i class="fas fa-map-marker-alt text-primary mx-2"></i>
-                            <p class="card-text text-dark mb-0">
+                            <p class="card-text mb-0">
                                 {{ $event->country->name }} - {{ $event->city->name }} - {{ $event->district->name }}
                             </p>
                         </div>

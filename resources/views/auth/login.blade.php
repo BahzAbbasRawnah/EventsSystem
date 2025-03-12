@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
-                <div class="card-header bg-primary text-white text-center py-4">
+                <div class="card-header bg-primary  text-center py-4">
                     <h2><i class="fas fa-sign-in-alt mx-2"></i>{{ __('pages.login') }}</h2>
                 </div>
                 <div class="card-body p-5">
@@ -28,7 +28,7 @@
 
                         <!-- Email -->
                         <div class="mb-4">
-                            <label for="email" class="form-label text-dark">
+                            <label for="email" class="form-label ">
                                 <i class="fas fa-envelope mx-2"></i>{{ __('pages.email') }}
                             </label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" 
@@ -41,7 +41,7 @@
 
                         <!-- Password -->
                         <div class="mb-4">
-                            <label for="password" class="form-label text-dark">
+                            <label for="password" class="form-label ">
                                 <i class="fas fa-lock mx-2"></i>{{ __('pages.password') }}
                             </label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" 
@@ -54,7 +54,7 @@
                         <!-- Remember Me -->
                         <div class="mb-4 form-check">
                             <input type="checkbox" class="form-check-input" id="remember" name="remember">
-                            <label class="form-check-label text-dark" for="remember">
+                            <label class="form-check-label " for="remember">
                                 {{ __('pages.remember_me') }}
                             </label>
                         </div>
@@ -68,7 +68,7 @@
 
                         <!-- Forgot Password -->
                         <div class="text-center mt-3">
-                            <a href="{{ route('password.forgot') }}" class="text-primary">{{ __('pages.forgot_password') }}</a>
+                            <a href="{{ route('password.forgot') }}" >{{ __('pages.forgot_password') }}</a>
                         </div>
                     </form>
                 </div>
@@ -76,9 +76,9 @@
 
             <!-- Register Link -->
             <div class="text-center mt-4">
-                <p class="text-dark">
+                <p >
                     {{ __('pages.no_account') }} 
-                    <a href="{{ route('register') }}" class="text-primary">{{ __('pages.register_here') }}</a>
+                    <a href="{{ route('register') }}" >{{ __('pages.register_here') }}</a>
                 </p>
             </div>
         </div>

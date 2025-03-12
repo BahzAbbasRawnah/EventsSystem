@@ -1,13 +1,65 @@
-/* Root Variables */
+/* Default Light Theme */
 :root {
-  --primary-color: #4B246E;  /* Light Purple */
-  --secondary-color: #FFB06B; /* Light Orange */
-  --text-color: #4B246E; /* Dark Gray */
-  --bg-color: #FDFDFD; /* Light Background */
-  --primary-border-color: var(--primary-color);
-  --secondary-border-color: var(--secondary-color);
-  --text-dark: var(--text-color);
-  --text-light: #fff; /* White for light text */
+  --primary-color: #6a0dad;
+  --secondary-color: #FFB06B;
+  --background-color: #ffffff;
+  --text-color: black; /* Black text for light theme */
+  --card-bg: #f8f9fa;
+  --border-color: #ddd;
+  --primary-border-color: #6a0dad;
+  --secondary-border-color: #4a0080;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary-color: #6a0dad;
+  --secondary-color: #FFB06B;
+  --background-color: #121212;
+  --text-color: white; /* White text for dark theme */
+  --card-bg: #1e1e1e;
+  --border-color: #444;
+}
+
+/* General Styles */
+body {
+  background-color: var(--background-color) !important;
+  transition: background 0.3s, color 0.3s;
+  color: var(--text-color) !important;
+  padding-top: 70px;
+}
+
+/* Ensure all text elements use the theme's text color */
+h1, h2, h3, h4, h5, h6, label,span, strong, p,  i, li, td, th, input, textarea, select, button,.card-title,.dropdown-item span {
+  color: var(--text-color) !important;
+}
+a{
+  color:var(--primary-color);
+}
+
+.card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color);
+}
+
+.navbar {
+  background-color: var(--background-color);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: var(--text-color);
+}
+
+
+
+.button:hover {
+  background-color: var(--primary-color);
 }
 
 /* Font Import */
@@ -17,13 +69,10 @@
   font-family: 'Droid Arabic Kufi', serif;
 }
 
-/* Buttons */
-.btn-primary, .btn-secondary {
-  color: var(--text-light) !important;
-  border: 1px solid;
-}
 
-.btn-primary {
+
+button, .btn-primary,.bg-primary {
+  color: #fff !important; /* Button text remains white for contrast */
   background-color: var(--primary-color) !important;
   border-color: var(--primary-border-color) !important;
 }
@@ -34,49 +83,16 @@
 }
 
 .btn-outline-primary {
-  color: var(--primary-color) !important;
-  border-color: var(--primary-border-color);
+  border-color: var(--primary-border-color) !important;
 }
-
-/* Text Colors */
-.text-dark { color: var(--text-dark); }
-.text-light { color: var(--text-light); }
-.text-primary { color: var(--primary-color) !important; }
-
-/* Background Colors */
-.bg-light { background-color: var(--bg-color) !important; }
-.bg-primary { background-color: var(--primary-color) !important; }
-
-/* Border Colors */
-.border-primary { border-color: var(--primary-border-color) !important; }
-.border-secondary { border-color: var(--secondary-border-color); }
+.text-primary {
+  color: var(--primary-color) !important;
+}
 
 /* Icon Colors */
-.icon-primary { color: var(--primary-color); }
+.icon-primary { color: var(--primary-color) !important; }
 .icon-secondary { color: var(--secondary-color); }
-
-/* Global Styles */
-body {
-  background-color: var(--bg-color) !important;
-  color: var(--text-color) !important;
-  padding-top: 70px;
-}
-
-/* Navbar */
-.navbar {
-  background-color: var(--bg-color) !important;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 10px 15px;
-  position: fixed; /* Fixed at the top */
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000; /* Ensures it stays above other elements */
-}
-
-
-
-
+.border-primary { border-color: var(--primary-border-color)!important }
 .navbar-brand, .nav-link {
   color: var(--text-color) !important;
   transition: color 0.3s ease-in-out;
@@ -86,7 +102,7 @@ body {
   font-size: large;
 }
 
-.navbar-brand:hover, .nav-link:hover {
+a,.navbar-brand:hover, .nav-link:hover {
   color: var(--secondary-color) !important;
 }
 
@@ -98,7 +114,7 @@ body {
   align-items: start;
   justify-content: center;
   text-align: center;
-  color: black;
+  color: var(--text-color); /* Use theme text color */
   padding: 10px;
 }
 
@@ -132,7 +148,6 @@ body {
 /* Cards */
 .card {
   border: none;
-  border-top: 5px solid;
   transition: transform 0.2s;
 }
 
@@ -141,7 +156,7 @@ body {
 }
 
 .card-header {
-  background-color: #f8f9fa;
+  background-color: var(--card-bg);
   border-bottom: none;
 }
 
@@ -152,7 +167,7 @@ body {
   padding: 10px 20px;
   margin-bottom: 20px;
   background-color: var(--primary-color);
-  color: white;
+  color: white; /* Fixed white text for contrast */
   border-radius: 20px;
   font-weight: bold;
 }
@@ -167,14 +182,15 @@ body {
 
 /* Image Thumbnail */
 .img-thumbnail {
-  border: 2px solid #dee2e6;
+  border: 2px solid var(--border-color);
   transition: border-color 0.2s;
 }
 .img-thumbnail:hover {
   border-color: var(--primary-border-color);
 }
-.empty-image{
-  border: 2px solid #dee2e6;
+
+.empty-image {
+  border: 2px solid var(--border-color);
   transition: border-color 0.2s;
   color: var(--primary-border-color);
   max-height: 400px;
@@ -187,7 +203,7 @@ body {
 
 /* Footer */
 .footer {
-  color: white;
+  color: var(--text-color); /* Use theme text color */
   text-align: center;
   padding: 10px 0;
   margin-top: 100px;

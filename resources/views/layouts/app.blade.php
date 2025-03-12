@@ -13,7 +13,7 @@
     <link href="{{ asset('WebsiteAssets/css/style.css') }}" rel="stylesheet">
     <link href="{{ asset('WebsiteAssets/images/favicon.png') }}" rel="shortcut icon">
     
-    <!-- Only one version of jQuery (3.7.1) -->
+    <!-- jQuery 3.7.1 -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     
     <!-- Bootstrap 5.3.3 JavaScript Bundle (includes Popper.js) -->
@@ -21,8 +21,34 @@
     
     <!-- HTML2PDF.js for generating PDFs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-     
 
+    <script>
+        $(document).ready(function () {
+            // Load theme from localStorage
+            const savedTheme = localStorage.getItem("theme") || "light";
+            $("html").attr("data-theme", savedTheme);
+            updateThemeIcon(savedTheme);
+
+            // Theme toggle button click event
+            $("#themeIcon").click(function () {
+                const currentTheme = $("html").attr("data-theme");
+                const newTheme = currentTheme === "light" ? "dark" : "light";
+                $("html").attr("data-theme", newTheme);
+                localStorage.setItem("theme", newTheme);
+                updateThemeIcon(newTheme);
+            });
+
+            // Function to update the theme icon
+            function updateThemeIcon(theme) {
+                const themeIcon = $("#themeIcon");
+                if (theme === "dark") {
+                    themeIcon.removeClass("fa-moon").addClass("fa-sun");
+                } else {
+                    themeIcon.removeClass("fa-sun").addClass("fa-moon");
+                }
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -30,7 +56,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">Event Ticketing</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon text-primary"></span>
+                <span class="navbar-toggler-icon "></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
@@ -41,7 +67,7 @@
                     <li class="nav-item"><a class="nav-link" href="{{ route('about') }}">{{ __('pages.about') }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('contact') }}">{{ __('pages.contact') }}</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('FAQ') }}">{{ __('pages.faq') }}</a></li>
-    
+
                     <!-- Authentication Dropdown -->
                     @auth
                     <li class="nav-item">
@@ -73,42 +99,34 @@
                             <a class="nav-link" href="{{ route('login') }}">{{ __('pages.login') }}</a>
                         </li>
                     @endauth
-    
+
                     <!-- Language Switcher Dropdown -->
-                    <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle " href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             {{ app()->getLocale() == 'en' ? 'English' : ' العربية' }}
                         </a>
-                        <ul class="dropdown-menu " aria-labelledby="languageDropdown">
+                        <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                             <li>
-                                <a class="dropdown-item " href="{{ route('switchLang', ['locale' => 'en']) }}">
-                                    <span role="img" aria-label="English">English</span> 
+                                <a class="dropdown-item" href="{{ route('switchLang', ['locale' => 'en']) }}">
+                                    <span  aria-label="English">English</span> 
                                 </a>
                             </li>
                             <li>
-                                <a class="dropdown-item " href="{{ route('switchLang', ['locale' => 'ar']) }}">
-                                    <span role="img" aria-label="Arabic">العربية</span> 
+                                <a class="dropdown-item" href="{{ route('switchLang', ['locale' => 'ar']) }}">
+                                    <span  aria-label="Arabic">العربية</span> 
                                 </a>
                             </li>
                         </ul>
+                    </li>
+                    <li class="nav-item text-center d-flex align-items-center mx-2">
+                        <i id="themeIcon" class="fas fa-moon "></i>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-@yield('content')
+    @yield('content')
 
-
-<script>
-    $(document).ready(function () {
-        $('#languageSwitcher').change(function () {
-            let selectedLang = $(this).val();
-            let form = $('#langSwitcherForm');
-            let action = "{{ route('switchLang', ['locale' => ':locale']) }}".replace(':locale', selectedLang);
-            form.attr('action', action).submit();
-        });
-    });
-</script>
 </body>
 </html>

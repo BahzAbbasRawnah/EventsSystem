@@ -96,7 +96,7 @@
             <!-- Login Link -->
             <div class="text-center mt-4">
                 <p class="text-dark">{{ __('pages.have_account') }} 
-                    <a href="{{ route('login') }}" class="text-primary">{{ __('pages.login_here') }}</a>
+                    <a href="{{ route('login') }}" >{{ __('pages.login_here') }}</a>
                 </p>
             </div>
         </div>

@@ -14,7 +14,7 @@
                     <div class="plan-title">{{ $package->name }}</div>
                 </div>
                 <div class="card-body">
-                    <h6 class="card-subtitle mb-2 text-muted">
+                    <h6 class=" mb-2 ">
                         ${{ $package->price }}/{{ $package->period }}
                     </h6>
                     <p class="card-text">
@@ -23,7 +23,7 @@
                     <ul class="list-unstyled mb-4">
                         @foreach ($package->features as $feature)
                         <li>
-                            <i class="fas fa-check-circle"></i> 
+                            <i class="fas fa-check-circle text-primary"></i> 
                             {{$feature->name }}
                         </li>
                         @endforeach

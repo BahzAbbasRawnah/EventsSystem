@@ -19,9 +19,9 @@
         <div class="col-md-6 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                    <h3 class="card-title text-center mb-0">{{ $booking->event->name }}</h3>
-                    <a href="{{ route('bookings.show', ['id' => $booking->id]) }}" class="text-white" title="Print">
-                        <i class="fas fa-print"></i>
+                    <h3 class="card-title text-center text-white mb-0">{{ $booking->event->name }}</h3>
+                    <a href="{{ route('bookings.show', ['id' => $booking->id]) }}"  title="Print">
+                        <i class="fas fa-print text-white"></i>
                     </a>
                 </div>
                 

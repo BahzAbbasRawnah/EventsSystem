@@ -3,7 +3,7 @@
 @section('content')
 <div class="container py-3">
     <!-- عنوان الفعالية -->
-    <h1 class="text-center mb-4 text-dark fw-bold">{{ $event->name }}</h1>
+    <h1 class="text-center mb-4  fw-bold">{{ $event->name }}</h1>
 
     <!-- الصورة الرئيسية -->
     <div class="text-center mb-5">
@@ -18,16 +18,16 @@
         <div class="col-md-8">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
-                    <h4 class="card-title text-dark mb-3 fw-bold">{{ __('pages.event_details') }}</h4>
+                    <h4 class="card-title  mb-3 fw-bold">{{ __('pages.event_details') }}</h4>
                     <div class="d-flex align-items-start mb-2">
                         <i class="fas fa-info-circle text-primary mx-2"></i>
-                        <p class="card-text text-dark"><strong>{{ __('pages.description') }}:</strong>{{ $event->description }}</p>
+                        <p class="card-text "><strong>{{ __('pages.description') }}:</strong>{{ $event->description }}</p>
                     </div>
                     
                     <!-- السعر -->
                     <div class="d-flex align-items-center mb-3">
                         <i class="fas fa-dollar-sign fa-lg text-primary mx-2"></i>
-                        <p class="text-dark mb-0"><strong>{{ __('pages.price') }}:</strong> {{ $event->ticket_price }}</p>
+                        <p class=" mb-0"><strong>{{ __('pages.price') }}:</strong> {{ $event->ticket_price }}</p>
                     </div>
 
 <!-- التواريخ -->
@@ -35,22 +35,22 @@
     <div class="col-md-6">
         <div class="d-flex align-items-center mb-3">
             <i class="fas fa-calendar-alt fa-lg text-primary mx-2"></i>
-            <p class="text-dark mb-0"><strong>{{ __('pages.start_date') }}:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</p>
+            <p class=" mb-0"><strong>{{ __('pages.start_date') }}:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</p>
         </div>
         <div class="d-flex align-items-center mb-3">
             <i class="fas fa-clock fa-lg text-primary mx-2"></i>
-            <p class="text-dark mb-0"><strong>{{ __('pages.end_time') }}:</strong> {{ \Carbon\Carbon::parse($event->end_date)->format('H:i A') }}</p>
+            <p class=" mb-0"><strong>{{ __('pages.end_time') }}:</strong> {{ \Carbon\Carbon::parse($event->end_date)->format('H:i A') }}</p>
         </div>
     </div>
     
     <div class="col-md-6">
         <div class="d-flex align-items-center mb-3">
             <i class="fas fa-clock fa-lg text-primary mx-2"></i>
-            <p class="text-dark mb-0"><strong>{{ __('pages.start_time') }}:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('H:i A') }}</p>
+            <p class=" mb-0"><strong>{{ __('pages.start_time') }}:</strong> {{ \Carbon\Carbon::parse($event->start_date)->format('H:i A') }}</p>
         </div>
         <div class="d-flex align-items-center mb-3">
             <i class="fas fa-calendar-alt fa-lg text-primary mx-2"></i>
-            <p class="text-dark mb-0"><strong>{{ __('pages.end_date') }}:</strong> {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}</p>
+            <p class=" mb-0"><strong>{{ __('pages.end_date') }}:</strong> {{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}</p>
         </div>
     
     </div>
@@ -60,7 +60,7 @@
                     <!-- الموقع -->
                     <div class="d-flex align-items-center mb-3">
                         <i class="fas fa-map-marker-alt fa-lg text-primary mx-2"></i>
-                        <p class="text-dark mb-0">
+                        <p class=" mb-0">
                             <strong>{{ __('pages.location') }}:</strong> 
                             {{ $event->country->name }} - {{ $event->city->name }} - {{ $event->district->name }}
                         </p>
@@ -73,7 +73,7 @@
         <div class="col-md-4">
             <div class="card shadow-sm border-0">
                 <div class="card-body">
-                    <h4 class="card-title text-dark mb-4 fw-bold">{{ __('pages.event_gallery') }}</h4>
+                    <h4 class="card-title  mb-4 fw-bold">{{ __('pages.event_gallery') }}</h4>
                     <div class="row g-2">
                         @foreach($event->images as $image)
                             <div class="col-6">
