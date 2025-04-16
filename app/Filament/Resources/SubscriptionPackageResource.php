@@ -86,7 +86,8 @@ class SubscriptionPackageResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('price')
                     ->label(__('admin.price'))
-                    ->sortable(),
+                    ->sortable()
+                    ->money('SAR'),
                 Tables\Columns\TextColumn::make('period')
                     ->label(__('admin.period'))
                     ->sortable(),

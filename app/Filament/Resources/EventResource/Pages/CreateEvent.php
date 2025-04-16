@@ -7,6 +7,7 @@ use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
+
 class CreateEvent extends CreateRecord
 {
     protected static string $resource = EventResource::class;
@@ -16,15 +17,18 @@ class CreateEvent extends CreateRecord
         // Get the uploaded images
         $images = $this->form->getState()['images'];
 
-        // Save each image to the images table
         foreach ($images as $image) {
-            // Generate a random path for the image
-            $randomPath = 'events/images/' . Str::uuid() . '.' . pathinfo($image, PATHINFO_EXTENSION);
+            $randomFileName = Str::uuid() . '.' . pathinfo($image, PATHINFO_EXTENSION);
+            $randomPath = 'images/' . $randomFileName; // Correct path under Assets/
 
-            // Move the uploaded file to the new random path
-            Storage::disk('public')->move($image, $randomPath);
+            // Ensure image is stored in Assets/ folder instead of public/storage
+            $imageContent = Storage::disk('public')->get($image); // Read file content
+            Storage::disk('assets')->put($randomPath, $imageContent); // Store in Assets/
 
-            // Save the image details to the images table
+            // Delete the old image from public disk
+            Storage::disk('public')->delete($image);
+
+            // Save the new path to the database
             $this->record->images()->create([
                 'path' => $randomPath,
                 'original_name' => basename($image),

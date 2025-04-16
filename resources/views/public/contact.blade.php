@@ -20,7 +20,7 @@
                 </ul>
                 <div class="mt-4">
                     <a href="#" class="btn btn-primary"><i class="fab fa-facebook-f"></i> {{ __('pages.facebook') }}</a>
-                    <a href="#" class="btn btn-secondary"><i class="fab fa-twitter"></i> {{ __('pages.twitter') }}</a>
+                    <a href="#" class="btn btn-primary"><i class="fab fa-twitter"></i> {{ __('pages.twitter') }}</a>
                     <a href="#" class="btn btn-primary"><i class="fab fa-instagram"></i> {{ __('pages.instagram') }}</a>
                 </div>
             </div>

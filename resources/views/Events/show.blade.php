@@ -7,10 +7,12 @@
 
     <!-- الصورة الرئيسية -->
     <div class="text-center mb-5">
-        <img src="{{ asset('storage/' . ($event->images->first()->path ?? 'default-image.jpg')) }}" 
+        <img src="{{ asset('Assets/' . ($event->images->first()->path ?? 'default/default.jpg')) }}" 
              class="img-fluid rounded shadow-lg event-main-image" 
              alt="{{ __('pages.event_title') }}">
     </div>
+    
+    
 
     <!-- تفاصيل الفعالية -->
     <div class="row g-4">
@@ -77,7 +79,7 @@
                     <div class="row g-2">
                         @foreach($event->images as $image)
                             <div class="col-6">
-                                <img src="{{ asset('storage/' . $image->path) }}" 
+                                <img src="{{ asset('Assets/' . ($event->images->first()->path ?? 'default/default.jpg')) }}" 
                                      class="img-fluid rounded shadow-sm event-gallery-image" 
                                      alt="{{ __('pages.event_gallery') }}">
                             </div>

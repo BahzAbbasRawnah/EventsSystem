@@ -27,9 +27,10 @@
         @foreach ($events as $event)
             <div class="col">
                 <div class="card h-100 shadow-sm">
-                    <img src="{{ asset('storage/' . ($event->images->first()->path ?? 'default-image.jpg')) }}" 
-                         class="event-image" 
-                         alt="Event Image">
+                    <img src="{{ asset('Assets/' . ($event->images->first()->path ?? 'default/default.jpg')) }}" 
+                    class="event-image" 
+                    alt="Event Image">
+               
                     <div class="card-body">
                         <h5 class="fw-bold">{{ $event->name }}</h5>
                         

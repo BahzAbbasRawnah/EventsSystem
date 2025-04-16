@@ -27,6 +27,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
+            ->domain(null) // Ensures it works in subdirectory
             ->login()
             ->colors([
                 'primary' => Color::Custom, 

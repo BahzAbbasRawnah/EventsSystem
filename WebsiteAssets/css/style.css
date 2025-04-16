@@ -1,0 +1,231 @@
+/* Default Light Theme */
+:root {
+  --primary-color: #9933CC;
+  --secondary-color: #FFB06B;
+  --background-color: #ffffff;
+  --text-color: black; /* Black text for light theme */
+  --card-bg: #f8f9fa;
+  --border-color: #ddd;
+  --primary-border-color: #9933CC;
+  --secondary-border-color: #9933CC;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary-color: #9933CC;
+  --secondary-color: #FFB06B;
+  --background-color: #121212;
+  --text-color: white; /* White text for dark theme */
+  --card-bg: #1e1e1e;
+  --border-color: #444;
+
+}
+
+/* General Styles */
+body {
+  background-color: var(--background-color) !important;
+  transition: background 0.3s, color 0.3s;
+  color: var(--text-color) !important;
+  padding-top: 70px;
+}
+
+
+/* Ensure all text elements use the theme's text color */
+h1, h2, h3, h4, h5, h6, label,span, strong, p,  i, li, td, th, textarea, select, button,.card-title,.dropdown-item span {
+  color: var(--text-color) !important;
+}
+a{
+  color:var(--primary-color);
+}
+
+.card {
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--border-color);
+}
+
+.navbar {
+  background-color: var(--background-color);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: var(--text-color);
+}
+
+
+
+.button:hover {
+  background-color: var(--primary-color);
+}
+
+/* Font Import */
+@import url(https://fonts.googleapis.com/earlyaccess/droidarabickufi.css);
+
+* {
+  font-family: 'Droid Arabic Kufi', serif;
+}
+
+
+
+button, .btn-primary,.bg-primary {
+  color: #fff !important; /* Button text remains white for contrast */
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-border-color) !important;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-border-color);
+}
+
+.btn-outline-primary {
+  border-color: var(--primary-border-color) !important;
+}
+.text-primary {
+  color: var(--primary-color) !important;
+}
+
+/* Icon Colors */
+.icon-primary { color: var(--primary-color) !important; }
+.icon-secondary { color: var(--secondary-color); }
+.border-primary { border-color: var(--primary-border-color)!important }
+.navbar-brand, .nav-link {
+  color: var(--text-color) !important;
+  transition: color 0.3s ease-in-out;
+  border-radius: 10px;
+  margin-left: 10px;
+  padding: 5px;
+  font-size: large;
+}
+
+a,.navbar-brand:hover, .nav-link:hover {
+  color: var(--secondary-color) !important;
+}
+
+/* Modified Hero Section */
+.hero-section {
+  height: 60vh; /* Reduced from 100vh */
+  max-height: 700px; /* Optional: sets maximum height */
+  background: url('../images/background/event_main.jpg') center/cover no-repeat;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-color);
+  padding: 10px;
+  margin: 20px 0; /* Adds space above/below */
+}
+
+/* Event Cards */
+.event-card {
+  transition: transform 0.3s ease-in-out;
+}
+.event-card:hover {
+  transform: scale(1.05);
+}
+
+/* Images */
+.event-main-image {
+  max-height: 400px;
+  width: auto;
+}
+
+.event-image, .event-gallery-image {
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+  height: 300px;
+}
+
+.event-gallery-image { height: 120px; width: 100%; }
+
+.card-img-top, .img-fluid {
+  max-height: 300px;
+}
+
+/* Cards */
+.card {
+  border: none;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card-header {
+  background-color: var(--card-bg);
+  border-bottom: none;
+}
+
+/* Plan Title */
+.plan-title {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  background-color: var(--primary-color);
+  color: white; /* Fixed white text for contrast */
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+/* Error Title */
+.error-title {
+  font-size: 8rem;
+  font-weight: bold;
+  color: var(--primary-color);
+  text-shadow: 3px 3px 0 var(--secondary-color);
+}
+
+/* Image Thumbnail */
+.img-thumbnail {
+  border: 2px solid var(--border-color);
+  transition: border-color 0.2s;
+}
+.img-thumbnail:hover {
+  border-color: var(--primary-border-color);
+}
+
+.empty-image {
+  border: 2px solid var(--border-color);
+  transition: border-color 0.2s;
+  color: var(--primary-border-color);
+  max-height: 400px;
+}
+
+/* Shadow */
+.shadow-sm {
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+input, textarea, select {
+  color: var(--text-color) !important; /* Ensure text color follows the theme */
+  background-color: var(--background-color) !important;
+  border: 1px solid var(--border-color) !important;
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-color);
+  opacity: 0.1; /* Slightly faded for better readability */
+}
+
+
+
+
+/* Footer */
+.footer {
+  color: var(--text-color); /* Use theme text color */
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 100px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

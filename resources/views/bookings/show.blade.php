@@ -25,9 +25,10 @@
                 <div class="card-body" id="ticketContent{{ $ticket }}">
                     <div class="row p-0 ">
                         <!-- First Column with Background Image -->
-                        <div class="col-12 p-o m-0 text-center" style="background-image: url('{{ asset($booking->event->images_list->first() ? 'storage/' . $booking->event->images_list->first() : 'storage/default/default.jpg') }}'); background-size: cover; background-position: center; min-height: 200px;">
+                        <div class="col-12 p-o m-0 text-center" style="background-image: url('{{ asset($booking->event->images->isNotEmpty() ? 'Assets/' . $booking->event->images->first()->path : 'Assets/default/default.jpg') }}'); background-size: cover; background-position: center; min-height: 200px;">
                             <!-- This column will have the background image -->
                         </div>
+                        
 
                         <!-- Rest of the Columns -->
                         <div class="col-12">

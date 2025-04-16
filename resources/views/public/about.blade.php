@@ -16,7 +16,7 @@
                 </p>
             </div>
             <div class="col-md-6">
-                <img src="{{ asset('storage/default/default.jpg') }}" alt="{{ __('pages.about_image_alt') }}" class="img-fluid rounded">
+                <img src="{{ asset('Assets/default/default.jpg') }}" alt="{{ __('pages.about_image_alt') }}" class="img-fluid rounded">
             </div>
         </div>
     </div>

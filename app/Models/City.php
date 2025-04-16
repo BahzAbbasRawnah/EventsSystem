@@ -17,6 +17,7 @@ class City extends Model
         'name_ar',
         'country_id',
     ];
+    
     protected $appends = ['name'];
 
     public function country(): \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin/dashboard', function () {
     return redirect()->route('filament.admin.pages.dashboard');
-})->name('admin.dashboard')->middleware('auth');
+})->name('admin')->middleware('auth');
 
 // Ticket Routes
 Route::prefix('tickets')->group(function () {

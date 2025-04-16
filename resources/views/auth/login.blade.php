@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
-                <div class="card-header bg-primary  text-center py-4">
-                    <h2><i class="fas fa-sign-in-alt mx-2"></i>{{ __('pages.login') }}</h2>
+                <div class="card-header bg-primary text-center py-4">
+                    <h2 class="text-white"><i class="fas fa-sign-in-alt mx-2 text-white"></i>{{ __('pages.login') }}</h2>
                 </div>
                 <div class="card-body p-5">
                     <!-- Display Authentication Errors -->
@@ -29,7 +29,7 @@
                         <!-- Email -->
                         <div class="mb-4">
                             <label for="email" class="form-label ">
-                                <i class="fas fa-envelope mx-2"></i>{{ __('pages.email') }}
+                                <i class="fas fa-envelope mx-2 text-primary"></i>{{ __('pages.email') }}
                             </label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" 
                                    id="email" name="email" placeholder="{{ __('pages.email_placeholder') }}" 
@@ -42,7 +42,7 @@
                         <!-- Password -->
                         <div class="mb-4">
                             <label for="password" class="form-label ">
-                                <i class="fas fa-lock mx-2"></i>{{ __('pages.password') }}
+                                <i class="fas fa-lock mx-2 text-primary"></i>{{ __('pages.password') }}
                             </label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" 
                                    id="password" name="password" placeholder="{{ __('pages.password_placeholder') }}" required>
@@ -62,7 +62,7 @@
                         <!-- Submit Button -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-sign-in-alt mx-2"></i>{{ __('pages.login') }}
+                                <i class="fas fa-sign-in-alt mx-2 text-white"></i>{{ __('pages.login') }}
                             </button>
                         </div>
 

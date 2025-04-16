@@ -11,9 +11,14 @@ class BookingsController extends Controller
      */
     public function index()
     {
-        $bookings=Booking::with('event')->where('user_id',auth()->id())->get();
-        return view('bookings.index',compact('bookings'));
+        $bookings = Booking::with(['event', 'event.images', 'event.category', 'event.country', 'event.city', 'event.district'])
+                            ->where('user_id', auth()->id())
+                            ->get();
+        
+        return view('bookings.index', compact('bookings'));
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.
@@ -36,9 +41,22 @@ class BookingsController extends Controller
      */
     public function show(string $id)
     {
-        $booking=Booking::with('event')->find($id);
-        return view('bookings.show',compact('booking'));
+        $booking = Booking::with([
+            'event',
+            'event.images',
+            'event.country',
+            'event.city',
+            'event.district'
+        ])->find($id);
+    
+        // If booking doesn't exist, return a 404 or a custom message
+        if (!$booking) {
+            return abort(404, __('pages.booking_not_found'));
+        }
+    
+        return view('bookings.show', compact('booking'));
     }
+    
 
     /**
      * Show the form for editing the specified resource.

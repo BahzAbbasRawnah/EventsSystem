@@ -11,7 +11,6 @@ use App\Traits\HasLocalizedAttributes;
 class Event extends Model
 {
     use HasFactory, SoftDeletes,HasLocalizedAttributes;
-
     protected $appends = [
         'name',
         'description',

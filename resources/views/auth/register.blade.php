@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-6">
             <div class="card shadow-lg border-0">
-                <div class="card-header bg-primary text-white text-center py-4">
-                    <h2><i class="fas fa-user-plus mx-2"></i>{{ __('pages.register') }}</h2>
+                <div class="card-header bg-primary  text-center py-4">
+                    <h2 class="text-white"><i class="fas fa-user-plus mx-2 text-white"></i>{{ __('pages.register') }}</h2>
                 </div>
                 <div class="card-body p-3">
                     <!-- Display Validation Errors -->
@@ -25,8 +25,8 @@
 
                         <!-- Name -->
                         <div class="mb-4">
-                            <label for="name" class="form-label text-dark">
-                                <i class="fas fa-user mx-2"></i>{{ __('pages.full_name') }}
+                            <label for="name" class="form-label ">
+                                <i class="fas fa-user mx-2 text-primary"></i>{{ __('pages.full_name') }}
                             </label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" 
                                    id="name" name="name" placeholder="{{ __('pages.full_name_placeholder') }}" 
@@ -38,8 +38,8 @@
 
                         <!-- Email -->
                         <div class="mb-4">
-                            <label for="email" class="form-label text-dark">
-                                <i class="fas fa-envelope mx-2"></i>{{ __('pages.email') }}
+                            <label for="email" class="form-label ">
+                                <i class="fas fa-envelope mx-2 text-primary"></i>{{ __('pages.email') }}
                             </label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" 
                                    id="email" name="email" placeholder="{{ __('pages.email_placeholder') }}" 
@@ -50,8 +50,8 @@
                         </div>
                              <!-- Phone -->
                              <div class="mb-4">
-                                <label for="phone" class="form-label text-dark">
-                                    <i class="fas fa-phone mx-2"></i>{{ __('pages.mobile') }}
+                                <label for="phone" class="form-label ">
+                                    <i class="fas fa-phone mx-2 text-primary"></i>{{ __('pages.mobile') }}
                                 </label>
                                 <input type="tel" class="form-control @error('phone') is-invalid @enderror" 
                                        id="email" name="phone" placeholder="{{ __('pages.mobile_placeholder') }}" 
@@ -63,8 +63,8 @@
 
                         <!-- Password -->
                         <div class="mb-4">
-                            <label for="password" class="form-label text-dark">
-                                <i class="fas fa-lock mx-2"></i>{{ __('pages.password') }}
+                            <label for="password" class="form-label ">
+                                <i class="fas fa-lock mx-2 text-primary"></i>{{ __('pages.password') }}
                             </label>
                             <input type="password" class="form-control @error('password') is-invalid @enderror" 
                                    id="password" name="password" placeholder="{{ __('pages.password_placeholder') }}" required>
@@ -75,8 +75,8 @@
 
                         <!-- Confirm Password -->
                         <div class="mb-4">
-                            <label for="password_confirmation" class="form-label text-dark">
-                                <i class="fas fa-lock mx-2"></i>{{ __('pages.confirm_password') }}
+                            <label for="password_confirmation" class="form-label ">
+                                <i class="fas fa-lock mx-2 text-primary"></i>{{ __('pages.confirm_password') }}
                             </label>
                             <input type="password" class="form-control" 
                                    id="password_confirmation" name="password_confirmation" 
@@ -86,7 +86,7 @@
                         <!-- Submit Button -->
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-user-plus mx-2"></i>{{ __('pages.register') }}
+                                <i class="fas fa-user-plus mx-2 text-white"></i>{{ __('pages.register') }}
                             </button>
                         </div>
                     </form>
@@ -95,7 +95,7 @@
 
             <!-- Login Link -->
             <div class="text-center mt-4">
-                <p class="text-dark">{{ __('pages.have_account') }} 
+                <p class="">{{ __('pages.have_account') }} 
                     <a href="{{ route('login') }}" >{{ __('pages.login_here') }}</a>
                 </p>
             </div>

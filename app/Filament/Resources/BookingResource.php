@@ -60,17 +60,24 @@ class BookingResource extends Resource
                 ->sortable()
                 ->label(__('admin.end_date')),
                 Tables\Columns\TextColumn::make('tickets_count')
+                ->label(__('admin.tickets'))
                 ->searchable()
-                ->sortable()
-                ->label(__('admin.tickets')),
+                ->sortable(),
+            
                 Tables\Columns\TextColumn::make('ticket_price')
+                ->label(__('admin.price'))
                 ->searchable()
-                ->sortable()
-                ->label(__('admin.price')),
+                ->sortable(),
+            
                 Tables\Columns\TextColumn::make('total_price')
+                ->label(__('admin.total_price'))
                 ->searchable()
                 ->sortable()
-                ->label(__('admin.total_price')),
+                ->getStateUsing(function (Booking $record): float {
+                    return $record->ticket_price * $record->tickets_count;
+                })
+                ->numeric()  
+                ->money('SAR'),  
                 Tables\Columns\TextColumn::make('created_at')
                 ->sortable()
                 ->label(__('admin.created_at'))
@@ -94,8 +101,7 @@ class BookingResource extends Resource
             ])
             ->actions([
                 Tables\Actions\ViewAction::make()
-                ->button()
-                ,
+                ->button(),
             
             ])
             ->bulkActions([

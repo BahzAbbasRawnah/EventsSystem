@@ -46,6 +46,14 @@ return [
             'throw' => false,
             'report' => false,
         ],
+            // Custom disk for Events folder
+'assets' => [
+    'driver' => 'local',
+    'root' => base_path('Assets'), // Corrected to use base_path
+    'url' => env('APP_URL') . '/Assets',
+    'visibility' => 'public',
+],
+
 
         's3' => [
             'driver' => 's3',

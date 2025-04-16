@@ -75,7 +75,7 @@
                     </li>
                     @if(auth()->user()->role === 'admin')
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.dashboard') }}">{{ __('pages.dashboard') }}</a>
+                        <a class="nav-link" href="{{ route('admin') }}">{{ __('pages.dashboard') }}</a>
                     </li>
                     @endif
                         <li class="nav-item dropdown">

@@ -95,6 +95,8 @@ class CityResource extends Resource
                 Tables\Actions\DeleteAction::make()
                 ->button(),
 
+
+
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -119,6 +121,7 @@ class CityResource extends Resource
             'create' => Pages\CreateCity::route('/create'),
             'view' => Pages\ViewCity::route('/{record}'),
             'edit' => Pages\EditCity::route('/{record}/edit'),
+            
         ];
     }
 
