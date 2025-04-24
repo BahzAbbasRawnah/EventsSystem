@@ -25,16 +25,25 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'password' => bcrypt('123456789'),
         ]);
+        // Comment out the default seeders when using demo data
         $this->call([
             CountriesSeeder::class,
             CitiesSeeder::class,
             DistrictSeeder::class,
-            CategoriesTableSeeder::class,
-            PaymentMethodSeeder::class,
-            SubscriptionPackageSeeder::class,
-            FeatureSeeder::class,
-            PackageFeatureSeeder::class,
-            
+            // CategoriesTableSeeder::class,
+            // PaymentMethodSeeder::class,
+            // SubscriptionPackageSeeder::class,
+            // FeatureSeeder::class,
+            // PackageFeatureSeeder::class,
         ]);
+
+        // Use the demo data seeder instead
+        // $this->call([
+        //     DemoDataSeeder::class,
+        //     PaymentMethodSeeder::class,
+        //     SubscriptionPackageSeeder::class,
+        //     FeatureSeeder::class,
+        //     PackageFeatureSeeder::class,
+        // ]);
     }
 }

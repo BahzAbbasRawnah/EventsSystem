@@ -1,80 +1,122 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    @if($bookings->isEmpty())
-        <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
-            <div class="alert alert-info text-center" role="alert">
-                {{ __('pages.no_bookings') }}
+<!-- Page Header -->
+<section class="bg-gradient-to-r from-primary to-accent  py-5 mb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-3">{{ __('pages.my_bookings') }}</h1>
+                <p class="lead mb-0">{{ __('pages.bookings_description') }}</p>
             </div>
-            <img src="{{ asset('Assets/default/empty.png') }}" alt="{{ __('pages.event_image') }}" class="empty-image rounded mb-3">
+        </div>
+    </div>
+</section>
+
+<div class="container mb-5">
+    @if($bookings->isEmpty())
+        <div class="row">
+            <div class="col-md-8 mx-auto text-center py-5">
+                <div class="card-custom shadow-sm border-0 p-5">
+                    <div class="py-4">
+                        <i class="fas fa-ticket-alt fa-4x text-muted mb-4"></i>
+                        <h3 class="fw-bold mb-3">{{ __('pages.no_bookings_yet') }}</h3>
+                        <p class="text-muted mb-4">{{ __('pages.no_bookings_message') }}</p>
+                        <a href="{{ route('events.index') }}" class="btn btn-primary px-4 py-2">
+                            <i class="fas fa-search me-2"></i>{{ __('pages.browse_events') }}
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     @else
-        <h2 class="text-center mb-4">{{ __('pages.bookings_list') }}</h2>
         <div class="row">
             @foreach ($bookings as $booking)
-                <div class="col-md-6 mb-4">
-                    <div class="card h-100 shadow-sm">
-                        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
-                            <h3 class="card-title text-center text-white mb-0">{{ $booking->event->name }}</h3>
-                            <a href="{{ route('bookings.show', ['id' => $booking->id]) }}" title="Print">
-                                <i class="fas fa-print text-white"></i>
-                            </a>
+                <div class="col-lg-6 mb-4">
+                    <div class="card-custom h-100 shadow-sm border-0 overflow-hidden">
+                        <div class="position-relative">
+                            <img src="{{ asset('Assets/' . ($booking->event->images->first() ? $booking->event->images->first()->path : 'default/default.jpg')) }}"
+                                 alt="{{ $booking->event->name }}"
+                                 class="card-img-top" style="height: 200px; object-fit: cover;">
+                            <div class="position-absolute top-0 end-0 p-3">
+                                <span class="badge {{ $booking->status == 'pending' ? 'bg-warning' : 'bg-success' }} px-3 py-2 rounded-pill">
+                                    {{ $booking->status == 'pending' ? __('pages.status_pending') : __('pages.status_confirmed') }}
+                                </span>
+                            </div>
                         </div>
 
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <img src="{{ asset('Assets/' . ($booking->event->images->first() ? $booking->event->images->first()->path : 'default/default.jpg')) }}" alt="{{ __('pages.event_image') }}" class="img-fluid rounded mb-3">
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <h4 class="card-title fw-bold mb-0">{{ $booking->event->name }}</h4>
+                                <a href="{{ route('bookings.show', ['id' => $booking->id]) }}" class="btn btn-sm btn-outline-primary rounded-circle" title="{{ __('pages.view_tickets') }}">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </a>
+                            </div>
+
+                            <div class="mb-3">
+                                <span class="badge bg-light text-dark me-2 mb-2">
+                                    <i class="fas fa-tag me-1 text-primary"></i> {{ $booking->event->category->name }}
+                                </span>
+                                <span class="badge bg-light text-dark me-2 mb-2">
+                                    <i class="fas fa-ticket-alt me-1 text-primary"></i> {{ $booking->tickets_count }} {{ __('pages.tickets') }}
+                                </span>
+                            </div>
+
+                            <div class="row g-3 mb-3">
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-light rounded-circle p-2 me-2">
+                                            <i class="fas fa-calendar-alt text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted d-block">{{ __('pages.start_date') }}</small>
+                                            <span>{{ \Carbon\Carbon::parse($booking->event->start_date)->format('M d, Y') }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-light rounded-circle p-2 me-2">
+                                            <i class="fas fa-calendar-check text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <small class="text-muted d-block">{{ __('pages.end_date') }}</small>
+                                            <span>{{ \Carbon\Carbon::parse($booking->event->end_date)->format('M d, Y') }}</span>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-12">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <p><i class="fas fa-hashtag text-primary mx-2"></i> {{ $booking->event->category->name }}</p>
+                                    <div class="d-flex align-items-center">
+                                        <div class="icon-box bg-light rounded-circle p-2 me-2">
+                                            <i class="fas fa-map-marker-alt text-primary"></i>
                                         </div>
-                                        <div class="col-md-4">
-                                            <p><i class="fas fa-calendar text-primary mx-2"></i> {{ \Carbon\Carbon::parse($booking->event->start_date)->format('M d, Y') }}</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p><i class="fas fa-calendar text-primary mx-2"></i> {{ \Carbon\Carbon::parse($booking->event->end_date)->format('M d, Y') }}</p>
-                                        </div>
-                                        <div class="col-12">
-                                            <p><i class="fas fa-map-marker-alt text-primary mx-2"></i> {{ $booking->event->country->name }} / {{ $booking->event->city->name }} / {{ $booking->event->district->name }}</p>
-                                        </div>
-
-                                        <hr>
-                                      
-                                        <div class="col-6">
-                                            <p><i class="fas fa-hashtag text-primary mx-2"></i> 
-                                                {{ $booking->status == 'pending' ? __('pages.status_pending') : __('pages.status_confirmed') }}
-                                            </p>
-                                        </div>
-                                        <div class="col-6">
-                                            <p><i class="fas fa-calendar text-primary mx-2"></i>{{ $booking->created_at->format('M d, Y') }}</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p><i class="fas fa-ticket-alt text-primary mx-2"></i>{{ __('pages.tickets_count') }}: {{ $booking->tickets_count }}</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p><i class="fas fa-dollar-sign text-primary mx-2"></i>{{ __('pages.ticket_price') }}: {{ $booking->ticket_price }} {{ __('pages.currency') }}</p>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <p><i class="fas fa-dollar-sign text-primary mx-2"></i>{{ __('pages.total_price') }}: {{ $booking->payment_details['amount'] }} {{ __('pages.currency') }}</p>
+                                        <div>
+                                            <small class="text-muted d-block">{{ __('pages.location') }}</small>
+                                            <span>{{ $booking->event->city->name }}, {{ $booking->event->country->name }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        @if($booking->event->images->isNotEmpty())
-                            <div class="card-footer bg-light">
-                                <div class="d-flex justify-content-center">
-                                    @foreach ($booking->event->images as $image)
-                                        <img src="{{ asset('Assets/' . $image->path) }}" alt="{{ __('pages.event_image') }}" class="img-thumbnail m-2" style="max-width: 100px;">
-                                    @endforeach
+                            <hr>
+
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div>
+                                    <small class="text-muted d-block">{{ __('pages.booking_date') }}</small>
+                                    <span><i class="far fa-calendar me-1"></i>{{ $booking->created_at->format('M d, Y') }}</span>
+                                </div>
+                                <div class="text-end">
+                                    <small class="text-muted d-block">{{ __('pages.total_price') }}</small>
+                                    <span class="fw-bold text-primary">{{ $booking->payment_details['amount'] }} {{ __('pages.currency') }}</span>
                                 </div>
                             </div>
-                        @endif
+                        </div>
+
+                        <div class="card-footer bg-white border-0 p-4 pt-0">
+                            <a href="{{ route('bookings.show', ['id' => $booking->id]) }}" class="btn btn-primary w-100">
+                                <i class="fas fa-eye me-2"></i>{{ __('pages.view_tickets') }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             @endforeach

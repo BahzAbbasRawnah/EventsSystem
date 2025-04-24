@@ -11,15 +11,30 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 class EventsController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories=Category::all();
-        $countries=Country::all();
-        $cities=City::all();
-        $districts=District::all();
-        $events = Event::with(['category','country','city','district','images'])->get();
-        return view('Events.index', compact('events','categories','countries','cities','districts'));
+        $query = Event::with(['category', 'country', 'city', 'district', 'images']);
+
+        // Filter by category
+        if ($request->has('category_id') && !empty($request->category_id)) {
+            $query->where('category_id', $request->category_id);
+        }
+
+        // Filter by city
+        if ($request->has('city_id') && !empty($request->city_id)) {
+            $query->where('city_id', $request->city_id);
+        }
+
+        // Get paginated results
+        $events = $query->paginate(9);
+
+        // Get all categories and cities for filter dropdowns
+        $categories = Category::all();
+        $cities = City::all();
+
+        return view('Events.index', compact('events', 'categories', 'cities'));
     }
+
 
     public function create()
     {
@@ -33,8 +48,15 @@ class EventsController extends Controller
 
     public function show($id)
     {
-        $event = Event::with(['category','country','city','district','images'])->find($id);
-        return view('Events.show', compact('event'));
+        $event = Event::with(['category','country','city','district','images','user'])->find($id);
+
+        $similarEvents = Event::with(['images'])
+            ->where('category_id', $event->category_id)
+            ->where('id', '!=', $event->id)
+            ->take(3)
+            ->get();
+
+        return view('Events.show', compact('event', 'similarEvents'));
     }
 
     public function edit($id)
@@ -54,7 +76,7 @@ class EventsController extends Controller
 
     public function filterEvents(Request $request)
     {
-    
+
         // Convert request parameters to integers before using them in the query
         $countryId = (int) $request->input('country_id');
         $cityId = (int) $request->input('city_id');
@@ -64,7 +86,7 @@ class EventsController extends Controller
         $events = Event::where('country_id', $countryId)->where('city_id', $cityId)->where('district_id', $districtId)->where('category_id', $categoryId)->with(['category','country','city','district','images'])->get();
 
         // $events = $query->get();
-    
+
         // Return events as JSON or HTML (depending on your response structure)
         return response()->json([
             'html' => view('events.partials.event_list', compact('events'))->render(),

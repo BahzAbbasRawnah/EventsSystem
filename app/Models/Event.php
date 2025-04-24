@@ -11,15 +11,7 @@ use App\Traits\HasLocalizedAttributes;
 class Event extends Model
 {
     use HasFactory, SoftDeletes,HasLocalizedAttributes;
-    protected $appends = [
-        'name',
-        'description',
-        'country_name',
-        'city_name',
-        'district_name',
-        'category_name',
-        'images_list'
-    ];
+ 
 
     protected $fillable = [
         'name_en', 'name_ar', 'ticket_price', 'tickets_quantity', 'category_id',
@@ -48,7 +40,7 @@ class Event extends Model
         return $this->hasMany(Ticket::class);
     }
 
-    public function vendor()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }

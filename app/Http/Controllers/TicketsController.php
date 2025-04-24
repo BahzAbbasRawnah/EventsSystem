@@ -35,7 +35,7 @@ class TicketsController extends Controller
         return view('tickets.buy_ticket', compact('event'));
     }
 
- 
+
     public function payment_process(Request $request)
     {
 
@@ -44,14 +44,12 @@ class TicketsController extends Controller
             'name'=>$request->name,
             'email'=>$request->email,
             'quantity'=>$request->quantity,
-            'guest_name'=>$request->guest_name
         ];
-        $payment_methods=PaymentMethod::all();
-        
-        return view('tickets.payment',compact('payment_methods','event','booking'));    
-        
+        $paymentMethods=PaymentMethod::all();
+        return view('tickets.payment',compact('paymentMethods','event','booking'));
+
     }
-   
+
     /**
      * Store a newly created resource in storage.
      */
@@ -62,7 +60,7 @@ class TicketsController extends Controller
             'event_id'=>$request->event_id,
             'user_id'=>auth()->id(),
             'payment_method_id'=>$request->payment_method_id,
-            'amount'=>$request->total_price,
+            'amount'=>$request->total,
             'card_name'=>$request->card_name,
             'card_number'=>$request->card_number,
             'cvv'=>$request->cvv
@@ -74,7 +72,7 @@ class TicketsController extends Controller
                 'event_id'=>$request->event_id,
                 'user_id'=>auth()->id(),
                 'payment_id'=>$payment->id,
-                'guest_name'=>$request->guest_name,
+                'guest_name'=>$request->name,
                 'tickets_count'=>$request->quantity,
                 'ticket_price'=>$event->ticket_price,
                 'total_price'=>$request->tickets_count*$event->ticket_price,

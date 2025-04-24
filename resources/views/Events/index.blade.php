@@ -1,87 +1,102 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container py-4">
-   
-
-    <!-- Categories Section -->
-    <div class="row mb-4">
-        <div class="col">
-            <div class="d-flex flex-wrap justify-content-md-center">
-                @foreach ($categories as $category)
-                    <button class="btn btn-outline-primary m-1 text-white">{{ $category->name }}</button>
-                @endforeach
+<!-- Page Header -->
+<section class=" bg-gradient-to-r from-primary to-accent  pt-5 pb-2 mb-1">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-3">{{ __('pages.discover_events') }}</h1>
+                <p class="lead mb-0">{{ __('pages.find_events_description') }}</p>
             </div>
         </div>
     </div>
-    @if($events->isEmpty())
-    <div class="col-md-12 d-flex flex-column justify-content-center align-items-center">
-        <div class="alert alert-info text-center" role="alert">
-            {{ __('pages.no_events') }}
-        </div>
-        <img src="{{ asset('storage/default/empty.png') }}" alt="{{ __('pages.event_image') }}" class="empty-image rounded mb-3">
-    </div>
-@else
-    <!-- Events List -->
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-        @foreach ($events as $event)
-            <div class="col">
-                <div class="card h-100 shadow-sm">
-                    <img src="{{ asset('Assets/' . ($event->images->first()->path ?? 'default/default.jpg')) }}" 
-                    class="event-image" 
-                    alt="Event Image">
-               
-                    <div class="card-body">
-                        <h5 class="fw-bold">{{ $event->name }}</h5>
-                        
-                        <!-- Price -->
-                        <div class="d-flex align-items-center mb-2">
-                            <i class="fas fa-dollar-sign text-primary mx-2"></i>
-                            <p class="card-text mb-0"> {{ $event->ticket_price }} {{ __('pages.currency') }}'</p>
+</section>
+
+<div class="container mb-5">
+    <!-- Filter Section -->
+    <div class="card-custom mb-5">
+        <div class="card-body p-4">
+            <h4 class="mb-4">{{ __('pages.filter_events') }}</h4>
+
+            <form id="filter-form" method="GET" action="{{ route('events.index') }}">
+                <div class="row g-3">
+                    <!-- Category Filter -->
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="category_id" class="form-label">{{ __('pages.category') }}</label>
+                            <select class="form-select form-control-custom" id="category_id" name="category_id">
+                                <option value="">{{ __('pages.select_category') }}</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
 
-                   <!-- Dates -->
-<!-- Dates -->
-<div class="d-flex align-items-center mb-2">
-    <div class="d-flex align-items-center">
-        <i class="fas fa-calendar-alt text-primary mx-2"></i>
-        <p class="card-text mb-0 mx-2">{{ \Carbon\Carbon::parse($event->start_date)->format('Y-m-d') }}</p>
-    </div>
-    <div class="d-flex align-items-center">
-        <i class="fas fa-calendar-alt text-primary mx-2"></i>
-        <p class="card-text mb-0">{{ \Carbon\Carbon::parse($event->end_date)->format('Y-m-d') }}</p>
-    </div>
-</div>
-
-<!-- Times -->
-<div class="d-flex align-items-center mb-2">
-    <div class="d-flex align-items-center">
-        <i class="fas fa-clock text-primary mx-2"></i>
-        <p class="card-text mb-0 mx-2">{{ \Carbon\Carbon::parse($event->start_date)->format('h:i A') }}</p>
-    </div>
-    <div class="d-flex align-items-center">
-        <i class="fas fa-clock text-primary mx-2"></i>
-        <p class="card-text mb-0">{{ \Carbon\Carbon::parse($event->end_date)->format('h:i A') }}</p>
-    </div>
-</div>
-
-
-
-                        <!-- Location -->
-                        <div class="d-flex align-items-center mb-3">
-                            <i class="fas fa-map-marker-alt text-primary mx-2"></i>
-                            <p class="card-text mb-0">
-                                {{ $event->country->name }} - {{ $event->city->name }} - {{ $event->district->name }}
-                            </p>
+                    <!-- City Filter -->
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="city_id" class="form-label">{{ __('pages.city') }}</label>
+                            <select class="form-select form-control-custom" id="city_id" name="city_id">
+                                <option value="">{{ __('pages.select_city') }}</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}" {{ request('city_id') == $city->id ? 'selected' : '' }}>
+                                        {{ $city->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
+                    </div>
 
-                        <!-- View Details Button -->
-                        <a href="{{ route('events.show', $event->id) }}" class="btn btn-primary w-100">{{ __('pages.view_details') }}</a>
+                    <!-- Filter Button -->
+                    <div class="col-md-2 d-flex align-items-end">
+                        <button type="submit" class="btn-custom btn-primary w-100 py-2">
+                            <i class="fas fa-filter me-2"></i> {{ __('pages.filter') }}
+                        </button>
                     </div>
                 </div>
-            </div>
-        @endforeach
+            </form>
+
+            @if(request('category_id') || request('city_id'))
+                <div class="mt-3">
+                    <a href="{{ route('events.index') }}" class="btn-custom btn-sm btn-outline-secondary">
+                        <i class="fas fa-times me-1"></i> {{ __('pages.clear_filters') }}
+                    </a>
+                </div>
+            @endif
+        </div>
     </div>
-@endif
+
+    <!-- Categories Quick Filter -->
+    <div class="mb-5">
+        <h4 class="mb-3">{{ __('pages.categories') }}</h4>
+        <div class="d-flex flex-wrap gap-2">
+            @foreach ($categories as $category)
+                <a href="{{ route('events.index', ['category_id' => $category->id]) }}"
+                   class="category-badge {{ request('category_id') == $category->id ? 'active' : '' }}">
+                    <i class="fas fa-{{ $category->icon ?? 'tag' }} me-1"></i> {{ $category->name }}
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+    <!-- Events List Section -->
+    <div id="events-container">
+        @include('events.partials.event_list')
+    </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Auto-submit form when select fields change
+        document.querySelectorAll('#filter-form select').forEach(select => {
+            select.addEventListener('change', function() {
+                document.getElementById('filter-form').submit();
+            });
+        });
+    });
+</script>
 @endsection

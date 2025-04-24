@@ -14,19 +14,12 @@ use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PricingPackageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\LanguageController;
 
 // Language Switch Route
-// Language Switch Route (Allow POST and GET)
-// Route::match(['get', 'post'], 'lang/{locale}', function ($locale) {
-//     if (!in_array($locale, ['en', 'ar'])) {
-//         abort(400);
-//     }
-//     Session::put('locale', $locale);
-//     app()->setLocale($locale);
 
-//     // App::setLocale($locale);
-//     return Redirect::back();
-// })->name('switchLang');
+Route::get('language/{locale}', [LanguageController::class, 'switch'])
+    ->name('language.switch');
 
 Route::get('/locale/{locale}', function ($locale) {
     Session::put('locale', $locale);
@@ -70,10 +63,8 @@ Route::get('/admin/dashboard', function () {
 
 // Ticket Routes
 Route::prefix('tickets')->group(function () {
-    // ✅ Users can **see** ticket purchase page without authentication
     Route::get('/buy/{id}', [TicketsController::class, 'create'])->name('tickets.buy');
 
-    // ❌ Users **must be authenticated** to proceed with purchase and payment
     Route::middleware('auth')->group(function () {
         Route::post('/payment', [TicketsController::class, 'store'])->name('tickets.payment');
         Route::post('/payment_process', [TicketsController::class, 'payment_process'])->name('tickets.payment_process');
