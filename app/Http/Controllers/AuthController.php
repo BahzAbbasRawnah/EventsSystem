@@ -10,9 +10,6 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Display the login form.
-     */
     public function login()
     {
         return view('auth.login');
